@@ -1,0 +1,59 @@
+<?php
+// function to print to primes upto that number
+function prime_function($number)
+{
+// if number <= 1,then no primes
+if ($number <= 1)
+{
+echo "no possible primes are present upto number ".$number;
+}
+else
+{
+// declare prime_arr array with all boolean trues from 0 to number+1
+$prime_arr = array_fill(0, $number+1, true);
+//we dont nedt to iterate upto number, it is enough if we iterate upto squareroot(number)
+for ($prime = 2; $prime*$prime <= $number; $prime++)
+{
+  
+if ($prime_arr[$prime] == true)
+{
+//override the array for values with multiples of $prime as false
+//i will explain whole theory in explanation section as i cant elaborate in
+//comments as it makes code clumsy
+for ($i = $prime*$prime; $i <= $number; $i += $prime)
+$prime_arr[$i] = false;
+}
+}
+  
+// print the numbers which have value as true
+for ($prime = 2; $prime <= $number; $prime++)
+if ($prime_arr[$prime])
+echo $prime." ";
+  
+}
+}
+//tester function
+function tester_function()
+{
+//with input 10
+$input = 10;
+echo "prime numbers upto given number " .$input." are : "." ";
+//call the prime function
+prime_function($input);
+echo " ";
+//with input 0
+$input = 0;
+echo "prime numbers upto given number " .$input." are : " ." ";
+//call the prime function
+prime_function($input);
+echo " ";
+//with input 100
+$input = 100;
+echo "prime numbers upto given number " .$input." are : "." " ;
+//call the prime function
+prime_function($input);
+}
+tester_function();
+// This code is contributed by mits
+?>
+
